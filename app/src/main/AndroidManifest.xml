@@ -49,7 +49,11 @@
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".learn.learn1.LearnNetActivity" />
+        <activity android:name=".learn.KnowledgeActivity" />
+        <activity android:name=".learn.learn1.OkGoActivity" />
+        <activity android:name=".WebActivity" />
+        <activity android:name=".learn.ViewActivity" />
+        <activity android:name=".learn.learn2.ImmersionSystemActivity"></activity>
     </application>
 
 </manifest>

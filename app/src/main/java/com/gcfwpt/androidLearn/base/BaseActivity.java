@@ -23,6 +23,7 @@ import com.gcfwpt.androidLearn.callback.BaseRightCallBack;
 import com.gcfwpt.androidLearn.utils.view.HeaderUtils;
 import com.gcfwpt.androidLearn.view.custom.BaseProgressBarLayout;
 import com.gyf.barlibrary.ImmersionBar;
+import com.orhanobut.logger.Logger;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 /**
@@ -249,6 +250,7 @@ public class BaseActivity extends AutoLayoutActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.click_replay:
+                Logger.e("lh","****click_replay");
                 if(replayCallBack!=null){
                     replayCallBack.onReplayNetClick(view);
                 }

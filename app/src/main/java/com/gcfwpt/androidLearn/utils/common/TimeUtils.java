@@ -404,6 +404,17 @@ public class TimeUtils {
     }
 
     /**
+     * 获取当前10位时间戳
+     *
+     * @return 毫秒时间戳
+     */
+    public static String getTenCurTimeMills() {
+        long time=System.currentTimeMillis()/1000;//获取系统时间的10位的时间戳
+        String  str=String.valueOf(time);
+        return str;
+    }
+
+    /**
      * 获取当前时间
      * <p>格式为yyyy-MM-dd HH:mm:ss</p>
      *

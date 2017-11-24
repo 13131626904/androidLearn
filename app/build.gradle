@@ -96,4 +96,15 @@ dependencies {
     compile 'com.orhanobut:logger:2.1.1'
     //Toast提醒
     compile 'com.github.GrenderG:Toasty:1.2.5'
+    //上下拉刷新加载
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    //没有使用特殊Header，可以不加这行
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+    //okgo
+    compile 'com.lzy.net:okgo:3.0.4'
+    //gson
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.readystatesoftware.chuck:library:1.0.4'
+    //按钮点击效果
+    compile 'com.balysv:material-ripple:1.0.2'
 }

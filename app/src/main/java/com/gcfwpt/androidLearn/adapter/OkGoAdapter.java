@@ -9,30 +9,29 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gcfwpt.androidLearn.R;
-import com.gcfwpt.androidLearn.bean.MainBean;
+import com.gcfwpt.androidLearn.bean.JokeBean;
 import com.gcfwpt.androidLearn.callback.OnRecycleClick;
 import com.zhy.autolayout.utils.AutoUtils;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
- * Created by LH on 2017/11/3.
+ * Created by LH on 2017/11/22.
  */
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> {
-
+public class OkGoAdapter extends RecyclerView.Adapter<OkGoAdapter.MyViewHolder> {
     private Context context;
-    private List<MainBean> mListMainBean;
+    private ArrayList<JokeBean> mListJokeBean;
     private OnRecycleClick onRecycleClick;
 
-    public MainAdapter(Context context, List<MainBean> mListMainBean) {
-        this.context = context;
-        this.mListMainBean = mListMainBean;
+    public OkGoAdapter(Context context,ArrayList<JokeBean> mListJokeBean){
+        this.context=context;
+        this.mListJokeBean=mListJokeBean;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MyViewHolder holder = new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_main, parent,
+        OkGoAdapter.MyViewHolder holder = new OkGoAdapter.MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_okgo, parent,
                 false));
         AutoUtils.autoSize(parent);
         return holder;
@@ -40,7 +39,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        holder.tvName.setText(mListMainBean.get(position).getmStrData());
+        holder.tvContent.setText(mListJokeBean.get(position).getContent());
+        holder.tvTime.setText(mListJokeBean.get(position).getUpdatetime());
         holder.linItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +53,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mListMainBean.size();
+        return mListJokeBean.size();
     }
 
     public void setOnRecycleClick(OnRecycleClick onRecycleClick) {
@@ -62,12 +62,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         LinearLayout linItem;
-        TextView tvName;
+        TextView tvContent;
+        TextView tvTime;
 
         public MyViewHolder(View view) {
             super(view);
             linItem = view.findViewById(R.id.lin_item);
-            tvName = (TextView) view.findViewById(R.id.tv_name);
+            tvContent = (TextView) view.findViewById(R.id.tv_content);
+            tvTime = (TextView) view.findViewById(R.id.tv_time);
         }
     }
 }

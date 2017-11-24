@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +16,7 @@ import com.gcfwpt.androidLearn.adapter.MainAdapter;
 import com.gcfwpt.androidLearn.base.BaseActivity;
 import com.gcfwpt.androidLearn.bean.MainBean;
 import com.gcfwpt.androidLearn.callback.OnRecycleClick;
-import com.gcfwpt.androidLearn.learn.learn1.LearnNetActivity;
+import com.gcfwpt.androidLearn.learn.KnowledgeActivity;
 import com.gcfwpt.androidLearn.utils.view.HeaderUtils;
 import com.gcfwpt.androidLearn.view.recycleview.DividerItemDecoration;
 import com.orhanobut.logger.Logger;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.yzl.permissionhelper.anotation.PermissionAgree;
 import cn.yzl.permissionhelper.anotation.PermissionNoAsk;
 import cn.yzl.permissionhelper.anotation.PermissionRefuse;
@@ -35,6 +37,8 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.rv_learn)
     RecyclerView rvLearn;
+    @BindView(R.id.fb_blog)
+    FloatingActionButton fbBlog;
 
     private List<MainBean> mListMainBean;
     private MainAdapter mainAdapter;
@@ -51,7 +55,8 @@ public class MainActivity extends BaseActivity {
 
     private void initData() {
         mListMainBean = new ArrayList<>();
-        mListMainBean.add(new MainBean("网络加载", LearnNetActivity.class));
+        mListMainBean.add(new MainBean("第三方知识点", KnowledgeActivity.class, MainBean.Type.TYPE_OTHER));
+        mListMainBean.add(new MainBean("界面相关", KnowledgeActivity.class, MainBean.Type.TYPE_VIEW));
     }
 
     private void initView() {
@@ -66,15 +71,16 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initRecycle() {
-        mainAdapter = new MainAdapter(MainActivity.this,mListMainBean);
+        mainAdapter = new MainAdapter(MainActivity.this, mListMainBean);
         rvLearn.setAdapter(mainAdapter);
         rvLearn.setItemAnimator(new DefaultItemAnimator());
         rvLearn.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-        rvLearn.addItemDecoration(new com.gcfwpt.androidLearn.view.recycleview.DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL_LIST));
+        rvLearn.addItemDecoration(new DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL_LIST));
         mainAdapter.setOnRecycleClick(new OnRecycleClick() {
             @Override
             public void onItemClick(View parent, int position) {
-                Intent it=new Intent(MainActivity.this,mListMainBean.get(position).getToActivity());
+                Intent it = new Intent(MainActivity.this, mListMainBean.get(position).getToActivity());
+                it.putExtra("knowledge_type", mListMainBean.get(position).getmIntType());
                 startActivity(it);
             }
         });
@@ -176,4 +182,11 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    @OnClick(R.id.fb_blog)
+    public void onViewClicked() {
+          Intent it=new Intent(MainActivity.this,WebActivity.class);
+          it.putExtra(WebActivity.TITLE,"欢迎来到我的博客");
+          it.putExtra(WebActivity.URL,"http://blog.csdn.net/u012483116");
+          startActivity(it);
+    }
 }

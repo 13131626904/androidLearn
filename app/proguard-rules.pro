@@ -191,3 +191,16 @@
 #barlibrary
  -keep class com.gyf.barlibrary.* {*;}
 
+#okhttp
+-dontwarn okhttp3.**
+-keep class okhttp3.**{*;}
+
+#okio
+-dontwarn okio.**
+-keep class okio.**{*;}
+
+#gson
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.stream.**{ *; }
+-keep class com.google.gson.examples.android.model.**{ *; }
+-keep class com.google.gson.**{ *;}

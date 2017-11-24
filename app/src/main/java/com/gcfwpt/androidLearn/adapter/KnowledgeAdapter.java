@@ -9,55 +9,51 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gcfwpt.androidLearn.R;
-import com.gcfwpt.androidLearn.bean.MainBean;
+import com.gcfwpt.androidLearn.bean.KnowledgeBean;
 import com.gcfwpt.androidLearn.callback.OnRecycleClick;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.List;
 
 /**
- * Created by LH on 2017/11/3.
+ * Created by LH on 2017/11/6.
  */
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> {
-
+public class KnowledgeAdapter extends RecyclerView.Adapter<KnowledgeAdapter.MyViewHolder>{
     private Context context;
-    private List<MainBean> mListMainBean;
+    private List<KnowledgeBean> mListKnowledgeBean;
     private OnRecycleClick onRecycleClick;
 
-    public MainAdapter(Context context, List<MainBean> mListMainBean) {
-        this.context = context;
-        this.mListMainBean = mListMainBean;
+    public KnowledgeAdapter(Context context, List<KnowledgeBean> mListKnowledgeBean){
+        this.context=context;
+        this.mListKnowledgeBean=mListKnowledgeBean;
+    }
+
+    public void setOnRecycleClick(OnRecycleClick onRecycleClick) {
+        this.onRecycleClick = onRecycleClick;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MyViewHolder holder = new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_main, parent,
-                false));
+        MyViewHolder myViewHolder= new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_knowledge,parent,false));
         AutoUtils.autoSize(parent);
-        return holder;
+        return myViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        holder.tvName.setText(mListMainBean.get(position).getmStrData());
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
+        holder.tvName.setText(mListKnowledgeBean.get(position).getmStrData());
         holder.linItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onRecycleClick!=null){
-                    onRecycleClick.onItemClick(holder.linItem,position);
-                }
+                onRecycleClick.onItemClick(view,position);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mListMainBean.size();
-    }
-
-    public void setOnRecycleClick(OnRecycleClick onRecycleClick) {
-        this.onRecycleClick = onRecycleClick;
+        return mListKnowledgeBean.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
